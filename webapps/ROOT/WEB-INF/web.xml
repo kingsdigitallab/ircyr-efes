@@ -15,7 +15,8 @@
   limitations under the License.
 --><!--+
     | This is the Cocoon web-app configurations file
-    +--><!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+    +-->
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
 
   <!-- Context Configuration ========================================== -->
@@ -294,7 +295,7 @@
       org/apache/cocoon/samples/parentcm/ParentCMConfiguration and use it.
     <init-param>
       <param-name>parent-component-manager</param-name>
-      <param-value>org.apache.cocoon.samples.parentcm.ParentComponentManager/org/apache/cocoon/samples/parentcm/ParentCMConfiguration</param-value>
+    <param-value>org.apache.cocoon.samples.parentcm.ParentComponentManager/org/apache/cocoon/samples/parentcm/ParentCMConfiguration</param-value>
     </init-param>
     -->
 
@@ -440,4 +441,7 @@
     <mime-type>text/plain</mime-type>
   </mime-mapping>
 
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>
