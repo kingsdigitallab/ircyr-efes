@@ -1,0 +1,45 @@
+name: ircyr
+
+x-var: &VIRTUAL_HOST "ircyr2020.inslib.kcl.ac.uk,ircyr-os.kdl.kcl.ac.uk,ircyr.app.cch.kcl.ac.uk,localhost,127.0.0.1"
+
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:1.4
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      PROXY_CONNECT_TIMEOUT: 300
+
+  tomcat:
+    image: tomcat:9-jdk17
+    restart: unless-stopped
+    expose:
+      - 8080
+    volumes:
+      - ../webapps/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ../webapps/solr:/usr/local/tomcat/webapps/solr
+    environment:
+      CATALINA_OPTS: "-Xmx2048m"
+      VIRTUAL_HOST: *VIRTUAL_HOST
+      VIRTUAL_PATH: "/"
+      VIRTUAL_PROTO: http
+      VIRTUAL_PORT: 8080
+
+  nginx:
+    build:
+      context: ..
+      dockerfile: ./compose/nginx/Dockerfile
+    restart: unless-stopped
+    expose:
+      - 8001
+    volumes:
+      - ../webapps/ROOT/assets:/usr/share/nginx/assets:ro
+      - ../volumes/images:/usr/share/nginx/images:ro
+    environment:
+      VIRTUAL_HOST: *VIRTUAL_HOST
+      VIRTUAL_PATH: "~^/(assets/|images/|robots.txt)"
+      VIRTUAL_PROTO: http
+      VIRTUAL_PORT: 8001
