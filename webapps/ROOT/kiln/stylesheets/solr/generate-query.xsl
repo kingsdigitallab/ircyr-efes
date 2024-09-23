@@ -113,9 +113,9 @@
   <xsl:template match="*[@join='and']">
     <xsl:text>fq=</xsl:text>
     <xsl:value-of select="local-name()" />
-    <xsl:text>:"</xsl:text>
+    <xsl:text>:%22</xsl:text>
     <xsl:value-of select="." />
-    <xsl:text>"</xsl:text>
+    <xsl:text>%22</xsl:text>
   </xsl:template>
 
   <xsl:template match="*[@join='or']">
@@ -127,9 +127,9 @@
       <xsl:value-of select="$name" />
       <xsl:text>:(</xsl:text>
       <xsl:for-each select="../*[local-name()=$name]">
-        <xsl:text>"</xsl:text>
+        <xsl:text>%22</xsl:text>
         <xsl:value-of select="." />
-        <xsl:text>"</xsl:text>
+        <xsl:text>%22</xsl:text>
         <xsl:if test="position() != last()">
           <xsl:text>+OR+</xsl:text>
         </xsl:if>
