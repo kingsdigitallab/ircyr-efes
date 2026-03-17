@@ -60,13 +60,13 @@
              the URL as per RFC 2396; eg,
              http://username:password@domain.name/ -->
         <fedora-url></fedora-url>
-        <rdf-base-uri>http://localhost:9999/rdf/</rdf-base-uri>
+        <rdf-base-uri>http://tomcat:8080/rdf/</rdf-base-uri>
         <!-- Comma-separated names of Solr facet fields that must get
              the label for each facet value from the RDF store rather
              than using the Solr data directly. -->
         <rdf-facet-lookup-fields>
           found_provenance,mentioned_people,mentioned_places,origin_place,source_repository,support_material,support_object_type</rdf-facet-lookup-fields>
-        <sesame-server>http://localhost:9999/openrdf-sesame/</sesame-server>
+        <sesame-server>http://tomcat:8080/openrdf-sesame/</sesame-server>
         <sesame-server-repository>kiln</sesame-server-repository>
         <solr-server>http://tomcat:8080/solr/collection/</solr-server>
         <!-- If 'search-lemma' is 1, present user interface to search
