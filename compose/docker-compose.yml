@@ -22,7 +22,7 @@ services:
       - ../webapps/ROOT:/usr/local/tomcat/webapps/ROOT
       - ../webapps/solr:/usr/local/tomcat/webapps/solr
     environment:
-      CATALINA_OPTS: "-Xmx2048m"
+      CATALINA_OPTS: "-Xmx2048m -XX:-UseBASE64Intrinsics -XX:UseAVX=2"
       VIRTUAL_HOST: *VIRTUAL_HOST
       VIRTUAL_PATH: "/"
       VIRTUAL_PROTO: http
